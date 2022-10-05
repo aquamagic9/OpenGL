@@ -1,8 +1,7 @@
 #version 330
 
 in vec4 vPosition;
-in vec4 position
-out vec4 vColor;
+in vec4 vColor;
 
 //유니폼은 전역변수같은 개념임
 uniform float uTime;
@@ -51,10 +50,7 @@ void main()
 	//vec4 wPos = rotY * vPosition;
 
 	vec4 wPos = rotY * rotX * vPosition;
-	//vec4 wPos = rotZ*vPosition;
 
-	wPosz.z = -wPos.z;
 	gl_Position = wPos;
 	color = vColor;
-	position = wPos;
 }
