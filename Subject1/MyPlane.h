@@ -21,6 +21,7 @@ struct MyPlaneInfo
 class MyPlane
 {
 public:
+	bool first_init;
 	int NUM_POINTS;
 	int rect_length = 2;
 	MyPlaneInfo info;
@@ -29,11 +30,17 @@ public:
 	GLuint vbo;
 	int vertices_index = 0;
 
+	MyPlane();
 	void init();
 	void setRectangle(int a, int b, int c, vec4* vertex_pos, vec4* vertex_color, int row, int col);
 	void draw(GLuint prog, float gTime, int gWave);
 	void setAttributePointers(GLuint prog);
 };
+
+MyPlane::MyPlane()
+{
+	first_init = true;
+}
 
 void MyPlane::setRectangle(int a, int b, int c, vec4* vertex_pos, vec4* vertex_color, int row, int col)
 {
@@ -63,7 +70,7 @@ void MyPlane::init()
 		vec4(info.width / (float)rect_length,	-info.height / (float)rect_length,	0.0, 0.0),
 	};
 
-	vec4 vertex_color[4] = {
+	vec4 vertex_color[2] = {
 		vec4(0.5,0.5,0.5,0.5),
 		vec4(0.3,0.3,0.3,0.3)
 	};
@@ -72,16 +79,18 @@ void MyPlane::init()
 		for (int j = 0; j < rect_length; j++)
 			setRectangle(0, 1, 2, vertex_pos, vertex_color, i, j);
 
-	glGenVertexArrays(1, &vao);
+	if (first_init)
+		glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
-	glGenBuffers(1, &vbo);
+	if (first_init)
+		glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(MyPlaneVertex) * NUM_POINTS,
 		vertices, GL_STATIC_DRAW);
 
+	first_init = false;
 	delete[] vertices;
-
 }
 
 void MyPlane::setAttributePointers(GLuint prog)

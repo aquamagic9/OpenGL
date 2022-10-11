@@ -13,7 +13,7 @@ out float height;
 
 void main()
 {
-	float default_angle1 = 45.0f;
+	float default_angle1 = -45.0f;
 	float rad1 = default_angle1 / 180.0f * 3.141592f;
 
 	float default_angle2 = 5.0f * uTime;
@@ -38,7 +38,7 @@ void main()
 	mat4 waveMat = mat4(1.0f);
 	if (distance <= 0.25f && uWave >= 0.5f)
 	{
-		waveMat[3][2] = sin((uTime + distance * 3.141592 * 24));
+		waveMat[3][2] = sin((-uTime + distance * 3.141592 * 24));
 		waveMat[3][2] = waveMat[3][2] * (0.25 -  distance);	
 	}
 	vec4 wPos = rotX*rotZ*waveMat*vPosition;
