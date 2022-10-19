@@ -1,0 +1,14 @@
+2022 10/19 수
+
+컴퓨터 그래픽스 정리
+
+모델좌표, 월드좌표, 카메라좌표, 스크린 좌표
+
+model transform, view(camera) transform, projection transform
+
+행렬의 장점 -> P ( V ( M ( 좌표)))) 를 통해서 최종적인 좌표를 구할 수 있다
+
+coloum major -> shader에서 사용하고 M[col][row]이다. 즉 vec가 col개 있다는 틋임.
+row major ->  M[row][col] -> c 에서
+
+오일러앵글은 각도 3개와 곱하는 순서를 알려준다.
