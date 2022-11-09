@@ -9,7 +9,7 @@ uniform mat4 uMat;
 void main()
 {
 	gl_Position  = uMat*vPosition;
-	//w로 나누어주어야 원래좌표대로 나온다!!
+	//w로 나누어주어야 원래좌표대로 나온다!! => 응 opengl이 해줘..!
 	gl_Position /= gl_Position.w;
 
 	gl_Position.z = -gl_Position.z;
