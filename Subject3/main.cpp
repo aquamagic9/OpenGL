@@ -11,7 +11,7 @@
 #include <vec.h>
 #include <mat.h>
 
-#define MAZE_FILE	"maze.txt"
+#define MAZE_FILE	"maze2.txt"
 using namespace std;
 
 MyCube cube;
@@ -51,7 +51,7 @@ bool changeDirection = false;
 class Node {
 public:
 	Node* connect;
-	int row, col; //index
+	int row, col;
 	int g, h, f;
 	char nodeName;
 	char value;
